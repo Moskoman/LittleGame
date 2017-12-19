@@ -1,5 +1,6 @@
 player = require ("src.player")
 platform = require ("src.platform")
+class = require ("lib.middleclass")
 
 
 function love.load()
