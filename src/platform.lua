@@ -1,0 +1,3 @@
+platform = {}
+
+return platform

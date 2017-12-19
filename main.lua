@@ -1,4 +1,5 @@
 player = require ("src.player")
+platform = require ("src.platform")
 
 
 function love.load()
