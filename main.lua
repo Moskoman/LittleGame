@@ -4,10 +4,12 @@ platform = require ("src.platform")
 
 
 function love.load()
+timeSinceLoad = 0
 
 end
 
 function love.update(dt)
+	timeSinceLoad = timeSinceLoad + dt
 	player.update(dt)
 	platform.update(dt)
 end

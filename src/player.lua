@@ -1,26 +1,48 @@
 platform = require ('src.platform')
 local player = {}
 
-player.positionX = -40
-player.positionY = 40
-player.sizeX = 30
-player.sizeY = 30
-player.jumped = false
-player.isGrounded = false
-player.isJumping = false
-local jumpSpeed = 40
-local speed = 100
+--general variables
+	gravity = 300
+	player.positionX = -40
+	player.positionY = 40
+	player.sizeX = 30
+	player.sizeY = 30
+	player.isGrounded = false
+	local speed = 100
+
+--jump variables
+	player.canJump = true
+	player.speedY = 0
+	player.isAscending = false
+	player.jumpCoolDown = 2.0
+	player.jumpCoolDownTimeStamp = 0
+	player.jumpInitialPosition = 0
+	player.jumpHeight = 100
+	player.isJumping = false
+	local jumpSpeed = 40
 
 function player.update(dt)
 	player.CheckColisions()
+	player.checkJumpCoolDown ()
 	player.IncreaseX(100, dt)
-	if (not isGrounded and not isJumping) then
+	if (not player.isGrounded) then
 		player.ApplyGravity(dt)
 	end
 
-	if (love.keyboard.isDown ("space")) then
-		player.Jump ()
+	if (love.keyboard.isDown ("space") and player.canJump) then
+		player.speedY = 250
+		player.isJumping = true
+		player.isAscending = true
+		player.jumpInitialPosition = player.positionY
+		player.jumpCoolDownTimeStamp = player.jumpCoolDownTimeStamp + player.jumpCoolDown
 	end
+
+
+	if (player.isJumping) then
+		player.canJump = false
+		player.Jump (player.jumpInitialPosition, dt)
+	end
+
 end
 
 
@@ -31,31 +53,45 @@ function player.IncreaseX (finalX, dt)
 	end
 end
 
-function player.Jump(dt)
-	if (player.positionY >= 180) then
-		player.positionY = player.positionY - 10
-	end
+function player.Jump(jumpInitialPosition, dt)
+	if ((player.positionY >= jumpInitialPosition - player.jumpHeight) and player.isAscending) then
+		player.positionY = player.positionY - (player.speedY * dt)
+		player.speedY = player.speedY - (gravity * dt)
+	else 
+		player.isAscending = false
+		player.isJumping = false
+	end                                                                                                                                                                                                                                                                                                                                                                                                                                                 
 end
 
 function player.ApplyGravity (dt)
-	player.positionY = player.positionY + (200 * dt)
+	player.speedY = player.speedY - (gravity * dt)
+	player.positionY = player.positionY - (player.speedY * dt)
 end
 
 function player.CheckColisions()
-	player.CheckFloorColision(platform)
-		--if incremental com ipairs
-	-- body
-end
 	--pega lista de colisores do montador de cenário
+	--if incremental com ipairs
+		player.CheckFloorColision(platform)
+	
+end
 function player.CheckFloorColision (platform)
 	if (((player.positionX >= platform.positionX) and (player.positionX <= (platform.positionX + platform.sizeX))) and (player.positionY >= platform.positionY - player.sizeY)) then
-		isGrounded = true
+		player.isGrounded = true
 		return true
 	else
-		isGrounded = false
+		player.isGrounded = false
 		return false
 	end
 
+end
+
+function player.checkJumpCoolDown()
+	if (player.jumpCoolDownTimeStamp <= player.jumpCoolDown + timeSinceLoad) then
+		player.canJump = true
+		print (player.jumpCoolDownTimeStamp)
+	else
+		player.canJump = false
+	end
 end
 
 return player
