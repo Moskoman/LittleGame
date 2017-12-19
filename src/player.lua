@@ -53,7 +53,7 @@ function player.IncreaseX (finalX, dt)
 	end
 end
 
-function player.Jump(jumpInitialPosition, dt)
+function player.Jump(jumpInitialPosition, dt) -- NO FUTURO CALCULAR SPEEDY EM FUNÇÃO DO JUMPHEIGHT
 	if ((player.positionY >= jumpInitialPosition - player.jumpHeight) and player.isAscending) then
 		player.positionY = player.positionY - (player.speedY * dt)
 		player.speedY = player.speedY - (gravity * dt)
