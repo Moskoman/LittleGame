@@ -7,11 +7,11 @@ platform.sizeY = 30
 local moveSpeed = 150
 
 function platform.update(dt)
-	platform.Anda(dt)
+	platform.Walk(dt)
 
 end
 
-function platform.Anda(dt)
+function platform.Walk(dt)
 	platform.positionX = platform.positionX - (moveSpeed * dt )
 
 end
