@@ -4,16 +4,17 @@ player.positionX = -40
 player.positionY = 240
 player.sizeX = 30
 player.sizeY = 30
+local speed = 100
 
 function player.update(dt)
-	player.IncreaseX(100)
+	player.IncreaseX(100, dt)
 end
 
 
-function player.IncreaseX (finalX)
+function player.IncreaseX (finalX, dt)
 
 	if player.positionX < finalX then
-		player.positionX = player.positionX + 1
+		player.positionX = player.positionX + (speed * dt)
 	end
 end
 

@@ -1,19 +1,19 @@
-class = require ("lib.middleclass")
+platform = {}
 
-local Platform = class("Platform")
+platform.positionX = 350
+platform.positionY = 30
+platform.sizeX = 59
+platform.sizeY = 30
+local moveSpeed = 150
 
-function Platform:initialize (positionX, positionY, sizeX, sizeY)
+function platform.update(dt)
+	platform.Anda(dt)
 
-	self.sizeX = sizeX
-	self.sizeY = sizeY
-	self.positionX = positionX
-	self.positionY = positionY
-
-	return self
 end
 
-function  Platform:anda(speed)
-	positionX = positionX - speed
+function platform.Anda(dt)
+	platform.positionX = platform.positionX - (moveSpeed * dt )
+
 end
 
-return Platform
+return platform
