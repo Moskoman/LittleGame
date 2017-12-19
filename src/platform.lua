@@ -1,7 +1,7 @@
 platform = {}
 
 platform.positionX = 350
-platform.positionY = 30
+platform.positionY = 240
 platform.sizeX = 59
 platform.sizeY = 30
 local moveSpeed = 150
