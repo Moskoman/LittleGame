@@ -17,6 +17,10 @@ function player.update(dt)
 	if (not isGrounded and not isJumping) then
 		player.ApplyGravity(dt)
 	end
+
+	if (love.keyboard.isDown ("space")) then
+		player.Jump ()
+	end
 end
 
 
@@ -28,7 +32,9 @@ function player.IncreaseX (finalX, dt)
 end
 
 function player.Jump(dt)
-	--isJumping = false
+	if (player.positionY >= 180) then
+		player.positionY = player.positionY - 10
+	end
 end
 
 function player.ApplyGravity (dt)
