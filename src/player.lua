@@ -88,7 +88,6 @@ end
 function player.checkJumpCoolDown()
 	if (player.jumpCoolDownTimeStamp <= player.jumpCoolDown + timeSinceLoad) then
 		player.canJump = true
-		print (player.jumpCoolDownTimeStamp)
 	else
 		player.canJump = false
 	end
