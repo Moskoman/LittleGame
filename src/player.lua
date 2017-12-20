@@ -4,11 +4,14 @@ local player = {}
 --general variables
 gravity = 300
 player.positionX = -40
-player.positionY = 40
+player.positionY = 200
 player.sizeX = 30
 player.sizeY = 30
 player.isGrounded = false
-local speed = 100
+
+--dash variables
+player.dashSpeed = 200
+player.dashDistance = 40
 
 --jump variables
 player.canJump = true
@@ -19,17 +22,21 @@ player.jumpCoolDownTimeStamp = 0
 player.jumpInitialPosition = 0
 player.jumpHeight = 100
 player.isJumping = false
-local jumpSpeed = 40
+player.jumpSpeed = 40
 
 
 function player.update(dt)
 
 	player.CheckColisions()
 	player.checkJumpCoolDown ()
-	player.IncreaseX(100, dt)
+	player.Dash(100, dt)
 
 	if (not player.isGrounded) then
 		player.ApplyGravity(dt)
+	end
+
+	if (love.keyboard.isDown ("lshift")) then
+		player.Dash ((player.positionX + player.dashDistance), dt)
 	end
 
 	if (love.keyboard.isDown ("space") and player.canJump) then
@@ -48,11 +55,15 @@ function player.update(dt)
 
 end
 
+function player.ApplyGravity (dt)
+	player.speedY = player.speedY - (gravity * dt)
+	player.positionY = player.positionY - (player.speedY * dt)
+end
 
-function player.IncreaseX (finalX, dt)
+function player.Dash (finalX, dt)
 
 	if player.positionX < finalX then
-		player.positionX = player.positionX + (speed * dt)
+		player.positionX = player.positionX + (player.dashSpeed * dt)
 	end
 end
 
@@ -66,9 +77,12 @@ function player.Jump(jumpInitialPosition, dt) -- NO FUTURO CALCULAR SPEEDY EM FU
 	end                                                                                                                                                                                                                                                                                                                                                                                                                                                 
 end
 
-function player.ApplyGravity (dt)
-	player.speedY = player.speedY - (gravity * dt)
-	player.positionY = player.positionY - (player.speedY * dt)
+function player.checkJumpCoolDown()
+	if ((player.jumpCoolDownTimeStamp <= player.jumpCoolDown + timeSinceLoad) and (player.isGrounded)) then
+		player.canJump = true
+	else
+		player.canJump = false
+	end
 end
 
 function player.CheckColisions()
@@ -90,12 +104,5 @@ function player.CheckFloorColision (platform)
 
 end
 
-function player.checkJumpCoolDown()
-	if ((player.jumpCoolDownTimeStamp <= player.jumpCoolDown + timeSinceLoad) and (player.isGrounded)) then
-		player.canJump = true
-	else
-		player.canJump = false
-	end
-end
 
 return player
