@@ -2,29 +2,32 @@ platform = require ('src.platform')
 local player = {}
 
 --general variables
-	gravity = 300
-	player.positionX = -40
-	player.positionY = 40
-	player.sizeX = 30
-	player.sizeY = 30
-	player.isGrounded = false
-	local speed = 100
+gravity = 300
+player.positionX = -40
+player.positionY = 40
+player.sizeX = 30
+player.sizeY = 30
+player.isGrounded = false
+local speed = 100
 
 --jump variables
-	player.canJump = true
-	player.speedY = 0
-	player.isAscending = false
-	player.jumpCoolDown = 2.0
-	player.jumpCoolDownTimeStamp = 0
-	player.jumpInitialPosition = 0
-	player.jumpHeight = 100
-	player.isJumping = false
-	local jumpSpeed = 40
+player.canJump = true
+player.speedY = 0
+player.isAscending = false
+player.jumpCoolDown = 2.0
+player.jumpCoolDownTimeStamp = 0
+player.jumpInitialPosition = 0
+player.jumpHeight = 100
+player.isJumping = false
+local jumpSpeed = 40
+
 
 function player.update(dt)
+
 	player.CheckColisions()
 	player.checkJumpCoolDown ()
 	player.IncreaseX(100, dt)
+
 	if (not player.isGrounded) then
 		player.ApplyGravity(dt)
 	end
@@ -75,7 +78,7 @@ function player.CheckColisions()
 	
 end
 function player.CheckFloorColision (platform)
-	if (((player.positionX >= platform.positionX) and (player.positionX <= (platform.positionX + platform.sizeX))) and (player.positionY >= platform.positionY - player.sizeY)) then
+	if ( ((player.positionY >= platform.positionY - player.sizeY) and (player.positionY <= platform.positionY + platform.sizeY)) and ((player.positionX >= platform.positionX) and (player.positionX <= (platform.positionX + platform.sizeX)))) then
 		player.isGrounded = true
 		player.speedY = 0
 		player.positionY = platform.positionY - player.sizeY + 1 
@@ -88,7 +91,7 @@ function player.CheckFloorColision (platform)
 end
 
 function player.checkJumpCoolDown()
-	if (player.jumpCoolDownTimeStamp <= player.jumpCoolDown + timeSinceLoad) then
+	if ((player.jumpCoolDownTimeStamp <= player.jumpCoolDown + timeSinceLoad) and (player.isGrounded)) then
 		player.canJump = true
 	else
 		player.canJump = false
