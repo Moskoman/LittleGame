@@ -1,11 +1,12 @@
 player = require ("src.player")
 platform = require ("src.platform")
+camera = require ("src.camera")
 
 
 
 function love.load()
-timeSinceLoad = 0
-
+	timeSinceLoad = 0
+	camera:set ()
 end
 
 function love.update(dt)
