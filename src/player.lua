@@ -77,6 +77,8 @@ end
 function player.CheckFloorColision (platform)
 	if (((player.positionX >= platform.positionX) and (player.positionX <= (platform.positionX + platform.sizeX))) and (player.positionY >= platform.positionY - player.sizeY)) then
 		player.isGrounded = true
+		player.speedY = 0
+		player.positionY = platform.positionY - player.sizeY + 1 
 		return true
 	else
 		player.isGrounded = false

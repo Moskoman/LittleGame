@@ -22,8 +22,7 @@ function love.draw()
 	love.graphics.setColor (255, 0, 0)
 	love.graphics.rectangle ("fill", player.positionX, player.positionY, player.sizeX, player.sizeY)
 
-	love.graphics.setColor (0, 255, 0)
-	love.graphics.rectangle ("fill", platform.positionX, platform.positionY, platform.sizeX, platform.sizeY)
+	love.graphics.draw (platform.image, platform.positionX, platform.positionY)
 
 	
 end
