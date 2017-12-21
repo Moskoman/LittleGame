@@ -17,7 +17,7 @@ end
 
 function love.draw()
 
-	camera:set ()
+	camera:set (player.positionX)
 
 	love.graphics.setColor (255, 255, 255)
 	love.graphics.rectangle ("fill", 0, 0, 480, 270)

@@ -8,9 +8,9 @@ platform.sizeY = 30
 local moveSpeed = 150
 
 function platform.update(dt)
-	platform.Walk(dt)
 
 end
+	
 
 function platform.Walk(dt)
 	platform.positionX = platform.positionX - (moveSpeed * dt )

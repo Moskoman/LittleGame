@@ -4,12 +4,14 @@ camera.x = 0
 camera.y = 0
 camera.scaleX = 1
 camera.scaleY = 1
+camera.followPlayerOffset = 120
 
-function camera:set ()
+function camera:set (playerX)
 	love.graphics.push ()
 	love.graphics.rotate (0)
 	love.graphics.scale (1/self.scaleX, 1/self.scaleY)
 	love.graphics.translate (-self.x, -self.y)
+	camera:setPosition (playerX - camera.followPlayerOffset)
 end
 
 function camera:unset ()

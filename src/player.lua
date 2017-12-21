@@ -8,6 +8,7 @@ player.positionY = 200
 player.sizeX = 30
 player.sizeY = 30
 player.isGrounded = false
+player.walkSpeed = 200
 
 --dash variables
 player.dashSpeed = 200
@@ -53,11 +54,17 @@ function player.update(dt)
 		player.Jump (player.jumpInitialPosition, dt)
 	end
 
+	player.Walk (dt)
+
 end
 
 function player.ApplyGravity (dt)
 	player.speedY = player.speedY - (gravity * dt)
 	player.positionY = player.positionY - (player.speedY * dt)
+end
+
+function player.Walk (dt)
+	player.positionX = player.positionX + (player.walkSpeed * dt)
 end
 
 function player.Dash (finalX, dt)
