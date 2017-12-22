@@ -1,4 +1,4 @@
-platform = require ('src.platform')
+platformGenerator = require ('src.platformGenerator')
 local player = {}
 
 --general variables
@@ -94,15 +94,25 @@ end
 
 function player.CheckColisions()
 	--pega lista de colisores do montador de cenário
-	--if incremental com ipairs
-		player.CheckFloorColision(platform)
+	local breakCondition = false
+	for i, v in ipairs(platformGenerator.platforms) do
+		if (breakCondition == false) then
+			breakCondition = player.CheckFloorColision(v)
+			print (v)
+		end
+	end
 	
 end
 
 function player.CheckFloorColision (platform)
 	if ( ((player.positionY >= platform.positionY - player.sizeY) and (player.positionY <= platform.positionY + platform.sizeY)) and ((player.positionX >= platform.positionX) and (player.positionX <= (platform.positionX + platform.sizeX)))) then
-		player.isGrounded = true
-		player.speedY = 0
+			print "1"
+		if (platform.positionY < player.positionY) then
+			player.speedY = player.speedY * (-1)
+		else
+			player.isGrounded = true
+		end
+
 		player.positionY = platform.positionY - player.sizeY + 1 
 		return true
 	else
