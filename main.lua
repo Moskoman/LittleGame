@@ -1,17 +1,17 @@
 player = require ("src.player")
-platform = require ("src.platform")
+platformGenerator = require ("src.platformGenerator")
 camera = require ("src.camera")
 
 
 
 function love.load()
 	timeSinceLoad = 0
+	platform = platformGenerator:makeNewPlatform ()
 end
 
 function love.update(dt)
 	timeSinceLoad = timeSinceLoad + dt
 	player.update(dt)
-	platform.update(dt)
 end
 
 
