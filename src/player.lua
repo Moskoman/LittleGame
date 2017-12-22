@@ -17,7 +17,6 @@ player.dashDistance = 40
 --jump variables
 player.canJump = true
 player.speedY = 0
-player.isAscending = false
 player.jumpCoolDown = 2.0
 player.jumpCoolDownTimeStamp = 0
 player.jumpInitialPosition = 0
@@ -43,7 +42,6 @@ function player.update(dt)
 	if (love.keyboard.isDown ("space") and player.canJump) then
 		player.speedY = 250
 		player.isJumping = true
-		player.isAscending = true
 		player.jumpInitialPosition = player.positionY
 		player.jumpCoolDownTimeStamp = player.jumpCoolDownTimeStamp + player.jumpCoolDown
 	end
@@ -75,11 +73,10 @@ function player.Dash (finalX, dt)
 end
 
 function player.Jump(jumpInitialPosition, dt) -- NO FUTURO CALCULAR SPEEDY EM FUNÇÃO DO JUMPHEIGHT
-	if ((player.positionY >= jumpInitialPosition - player.jumpHeight) and player.isAscending) then
+	if ((player.positionY >= jumpInitialPosition - player.jumpHeight) and player.speedY > 0) then
 		player.positionY = player.positionY - (player.speedY * dt)
 		player.speedY = player.speedY - (gravity * dt)
 	else 
-		player.isAscending = false
 		player.isJumping = false
 	end                                                                                                                                                                                                                                                                                                                                                                                                                                                 
 end
@@ -108,12 +105,11 @@ function player.CheckFloorColision (platform)
 	if ( ((player.positionY >= platform.positionY - player.sizeY) and (player.positionY <= platform.positionY + platform.sizeY)) and ((player.positionX >= platform.positionX) and (player.positionX <= (platform.positionX + platform.sizeX)))) then
 			print "1"
 		if (platform.positionY < player.positionY) then
-			player.speedY = player.speedY * (-1)
+			player.speedY = 0
 		else
 			player.isGrounded = true
 		end
 
-		player.positionY = platform.positionY - player.sizeY + 1 
 		return true
 	else
 		player.isGrounded = false
