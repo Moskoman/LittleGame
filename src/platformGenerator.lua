@@ -1,10 +1,11 @@
 platformGenerator = {}
-
+newPlatform = require ("src.platform")
 
 
 function platformGenerator:makeNewPlatform (platformX, platformY)
-	newPlatform = require ("src.platform")
-	return newPlatform
+	a = {}
+	a = newPlatform:new (a, platformX, platformY)
+	return a
 end
 
 return platformGenerator
