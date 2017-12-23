@@ -6,9 +6,6 @@ platform.image = love.graphics.newImage ("assets/world/platform_1.png")
 platform.sizeX = 5000
 platform.sizeY = 235
 
-function platform.update(dt)
-end
-
 function platform:new (a, positionX, positionY)
 	
 	a = a or {}

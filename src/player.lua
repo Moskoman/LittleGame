@@ -95,7 +95,6 @@ function player.CheckColisions()
 	for i, v in ipairs(platformGenerator.platforms) do
 		if (breakCondition == false) then
 			breakCondition = player.CheckFloorColision(v)
-			print (v)
 		end
 	end
 	
@@ -103,7 +102,6 @@ end
 
 function player.CheckFloorColision (platform)
 	if ( ((player.positionY >= platform.positionY - player.sizeY) and (player.positionY <= platform.positionY + platform.sizeY)) and ((player.positionX >= platform.positionX) and (player.positionX <= (platform.positionX + platform.sizeX)))) then
-			print "1"
 		if (platform.positionY < player.positionY) then
 			player.speedY = -40
 		else
