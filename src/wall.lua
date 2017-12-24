@@ -5,6 +5,7 @@ wall.positionY = 0
 wall.sizeX = 0
 wall.sizeY = 0
 
+
 function wall:new (positionX, positionY, sizeX, sizeY)
 
 	wall = {}
