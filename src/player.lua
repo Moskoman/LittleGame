@@ -1,4 +1,5 @@
 platformGenerator = require ('src.platformGenerator')
+wallGenerator = require ("src.wallGenerator")
 local player = {}
 
 --general variables
@@ -90,7 +91,10 @@ function player.checkJumpCoolDown()
 end
 
 function player.CheckColisions()
-	--pega lista de colisores do montador de cenário
+	for i, v in ipairs (wallGenerator.walls) do
+		player.CheckWallColision (v)
+	end
+
 	local breakCondition = false
 	for i, v in ipairs(platformGenerator.platforms) do
 		if (breakCondition == false) then
@@ -121,7 +125,9 @@ function player.CheckFloorColision (platform)
 end
 
 function player.CheckWallColision (wall)
-
+	if ((player.positionX >= wall.positionX) and (player.positionX < wall.positionX + wall.sizeX)) then
+		print "colidiu parede"
+	end
 end
 
 return player
