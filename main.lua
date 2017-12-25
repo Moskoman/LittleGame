@@ -8,6 +8,7 @@ camera = require ("src.camera")
 
 function love.load()
 	timeSinceLoad = 0
+	camera.positionX = 80
 	platform = platformGenerator:makeNewPlatform (0, 250)
 	p2 = platformGenerator:makeNewPlatform (700, 200)
 	p3 = platformGenerator:makeNewPlatform (700, -100)
@@ -18,12 +19,13 @@ end
 function love.update(dt)
 	timeSinceLoad = timeSinceLoad + dt
 	player.update(dt)
+	camera.positionX = camera.positionX + (200 * dt)
 end
 
 
 function love.draw()
 
-	camera:set (player.positionX)
+	camera:set (camera.positionX)
 
 	love.graphics.setColor (255, 255, 255)
 	love.graphics.rectangle ("fill", 0, 0, 4800, 270)
