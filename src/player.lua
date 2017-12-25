@@ -152,12 +152,18 @@ function player.CheckFloorColision (platform)
 end
 
 function player.CheckWallColision (i,wall)
-	if (((player.positionX + player.sizeX >= wall.positionX) and (player.positionX < wall.positionX + wall.sizeX)) and ((player.positionY >= wall.positionY) and (player.positionY < wall.positionY + wall.sizeY))) then
-		if (player.isDashing) then 
-			table.remove(wallGenerator.walls, i)
-			player.walkSpeed = 200
-		else
-			player.walkSpeed = 0
+	if ((player.positionX + player.sizeX >= wall.positionX) and (player.positionX < wall.positionX + wall.sizeX)) then
+		if ((player.positionY >= wall.positionY) and (player.positionY < wall.positionY + wall.sizeY)) then
+			if (player.isDashing) then 
+				table.remove(wallGenerator.walls, i)
+				player.walkSpeed = 200
+			else
+				player.walkSpeed = 0
+			end
+		elseif (player.positionY < wall.positionY and player.positionY > wall.positionY - player.sizeY - 1) then
+			player.positionY = wall.positionY - player.sizeY
+			player.isGrounded = true
+			player.speedY = 0
 		end
 	end
 end
