@@ -14,6 +14,7 @@ function love.load()
 	p3 = platformGenerator:makeNewPlatform (700, -100)
 	wall1 = wallGenerator:makeNewWall (500, 180, 50, 500)
 	wall2 = wallGenerator:makeNewWall (900, 100, 50, 500)
+	player.Dash (100, 0.1)
 end
 
 function love.update(dt)

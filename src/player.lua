@@ -12,8 +12,10 @@ player.isGrounded = false
 player.walkSpeed = 200
 
 --dash variables
+player.canDash = true
 player.dashSpeed = 200
-player.dashDistance = 40
+player.dashDistance = 200
+player.dashInitialPosition = 0
 player.isDashing = false
 
 --jump variables
@@ -38,8 +40,9 @@ function player.update(dt)
 		player.ApplyGravity(dt)
 	end
 
-	if (love.keyboard.isDown ("lshift")) then
-		player.Dash ((player.positionX + player.dashDistance), dt)
+	if (love.keyboard.isDown ("lshift") and player.canDash) then
+		player.isDashing = true
+		player.dashInitialPosition = player.positionX
 	end
 
 	if (love.keyboard.isDown ("space") and player.canJump) then
@@ -53,6 +56,11 @@ function player.update(dt)
 	if (player.isJumping) then
 		player.canJump = false
 		player.Jump (player.jumpInitialPosition, dt)
+	end
+
+	if (player.isDashing) then
+		player.canDash = false
+		player.Dash ((player.dashInitialPosition + player.dashDistance), dt)
 	end
 
 	player.Walk (dt)
@@ -73,6 +81,9 @@ function player.Dash (finalX, dt)
 	if player.positionX < finalX then
 		player.positionX = player.positionX + (player.dashSpeed * dt)
 		player.isDashing = true
+	else
+		player.canDash = true
+		player.isDashing = false
 	end
 end
 
