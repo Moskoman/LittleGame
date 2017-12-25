@@ -35,6 +35,8 @@ player.jumpSpeed = 40
 
 function player.update(dt)
 
+	print (player.isGrounded)
+
 	player.CheckDeath()
 	player.CheckColisions()
 	player.checkJumpCoolDown ()
@@ -118,10 +120,6 @@ function player.checkJumpCoolDown()
 end
 
 function player.CheckColisions()
-	for i, v in ipairs (wallGenerator.walls) do
-		player.CheckWallColision (i,v)
-	end
-
 	local breakCondition = false
 	for i, v in ipairs(platformGenerator.platforms) do
 		if (breakCondition == false) then
@@ -129,6 +127,10 @@ function player.CheckColisions()
 		end
 	end
 	
+	for i, v in ipairs (wallGenerator.walls) do
+		player.CheckWallColision (i,v)
+	end
+
 end
 
 function player.CheckFloorColision (platform)
@@ -162,6 +164,7 @@ function player.CheckWallColision (i,wall)
 			end
 		elseif (player.positionY < wall.positionY and player.positionY > wall.positionY - player.sizeY - 1) then
 			player.positionY = wall.positionY - player.sizeY
+			print "foi"
 			player.isGrounded = true
 			player.speedY = 0
 		end
