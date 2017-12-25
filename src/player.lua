@@ -101,7 +101,7 @@ function player.CheckColisions()
 end
 
 function player.CheckFloorColision (platform)
-	if ( ((player.positionY >= platform.positionY - player.sizeY) and (player.positionY <= platform.positionY + platform.sizeY)) and ((player.positionX >= platform.positionX) and (player.positionX <= (platform.positionX + platform.sizeX)))) then
+	if (((player.positionY >= platform.positionY - player.sizeY) and (player.positionY <= platform.positionY + platform.sizeY)) and ((player.positionX >= platform.positionX) and (player.positionX <= (platform.positionX + platform.sizeX)))) then
 		if (platform.positionY < player.positionY) then
 			player.speedY = -40
 		else
@@ -120,5 +120,8 @@ function player.CheckFloorColision (platform)
 
 end
 
+function player.CheckWallColision (wall)
+
+end
 
 return player

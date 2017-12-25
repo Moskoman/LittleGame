@@ -6,7 +6,7 @@ function wallGenerator:makeNewWall (positionX, positionY, sizeX, sizeY)
 	newWall = {}
 	newWall = wall:new (positionX, positionY, sizeX, sizeY)
 	table.insert(wallGenerator.walls, newWall)
-	return wall
+	return newWall
 end
 
 return wallGenerator 

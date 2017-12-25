@@ -8,14 +8,14 @@ wall.sizeY = 0
 
 function wall:new (positionX, positionY, sizeX, sizeY)
 
-	wall = {}
-	setmetatable(wall, self)
-	wall.__index = self
-	wall.positionX = positionX
-	wall.positionY = positionY
-	wall.sizeX = sizeX
-	wall.sizeY = sizeY
-	return wall
+	a = {}
+	setmetatable(a, self)
+	a.__index = self
+	a.positionX = positionX
+	a.positionY = positionY
+	a.sizeX = sizeX
+	a.sizeY = sizeY
+	return a
 
 end
 
