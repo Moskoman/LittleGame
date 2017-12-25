@@ -125,8 +125,8 @@ function player.CheckFloorColision (platform)
 end
 
 function player.CheckWallColision (wall)
-	if ((player.positionX >= wall.positionX) and (player.positionX < wall.positionX + wall.sizeX)) then
-		print "colidiu parede"
+	if ((player.positionX + player.sizeX >= wall.positionX) and (player.positionX < wall.positionX + wall.sizeX)) then
+		player.walkSpeed = 0
 	end
 end
 
