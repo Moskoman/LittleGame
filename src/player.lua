@@ -11,6 +11,7 @@ player.sizeX = 30
 player.sizeY = 30
 player.isGrounded = false
 player.walkSpeed = 200
+player.isAlive = true
 
 --dash variables
 player.canDash = true
@@ -42,32 +43,35 @@ function player.update(dt)
 		player.ApplyGravity(dt)
 	end
 
-	if (love.keyboard.isDown ("lshift") and player.canDash) then
-		player.isDashing = true
-		player.dashInitialPosition = player.positionX
-		player.dashCoolDownTimeStamp = player.dashCoolDownTimeStamp + player.dashCoolDown
+	if (player.isAlive) then
+
+		if (love.keyboard.isDown ("lshift") and player.canDash) then
+			player.isDashing = true
+			player.dashInitialPosition = player.positionX
+			player.dashCoolDownTimeStamp = player.dashCoolDownTimeStamp + player.dashCoolDown
+		end
+
+		if (love.keyboard.isDown ("space") and player.canJump) then
+			player.speedY = 250
+			player.isJumping = true
+			player.jumpInitialPosition = player.positionY
+			player.jumpCoolDownTimeStamp = player.jumpCoolDownTimeStamp + player.jumpCoolDown
+		end
+
+
+		if (player.isJumping) then
+			player.canJump = false
+			player.Jump (player.jumpInitialPosition, dt)
+		end
+
+		if (player.isDashing) then
+			player.canDash = false
+			player.Dash ((player.dashInitialPosition + player.dashDistance), dt)
+		end
+
+		player.Walk (dt)
+
 	end
-
-	if (love.keyboard.isDown ("space") and player.canJump) then
-		player.speedY = 250
-		player.isJumping = true
-		player.jumpInitialPosition = player.positionY
-		player.jumpCoolDownTimeStamp = player.jumpCoolDownTimeStamp + player.jumpCoolDown
-	end
-
-
-	if (player.isJumping) then
-		player.canJump = false
-		player.Jump (player.jumpInitialPosition, dt)
-	end
-
-	if (player.isDashing) then
-		player.canDash = false
-		player.Dash ((player.dashInitialPosition + player.dashDistance), dt)
-	end
-
-	player.Walk (dt)
-
 end
 
 function player.ApplyGravity (dt)
@@ -160,8 +164,7 @@ end
 
 function player.CheckDeath ()
 	if (player.positionX < camera.positionX - player.sizeX - 200) then
-		print "morreu"
-		--print (timeSinceLoad)
+		player.isAlive = false
 	end
 end
 
