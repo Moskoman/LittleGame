@@ -33,8 +33,6 @@ player.jumpSpeed = 40
 
 function player.update(dt)
 
-	print (player.isDashing)
-
 	player.CheckColisions()
 	player.checkJumpCoolDown ()
 
@@ -151,6 +149,7 @@ function player.CheckWallColision (i,wall)
 	if (((player.positionX + player.sizeX >= wall.positionX) and (player.positionX < wall.positionX + wall.sizeX)) and ((player.positionY >= wall.positionY) and (player.positionY < wall.positionY + wall.sizeY))) then
 		if (player.isDashing) then 
 			table.remove(wallGenerator.walls, i)
+			player.walkSpeed = 200
 		else
 			player.walkSpeed = 0
 		end
