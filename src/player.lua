@@ -16,6 +16,8 @@ player.canDash = true
 player.dashSpeed = 200
 player.dashDistance = 200
 player.dashInitialPosition = 0
+player.dashCoolDown = 2.0
+player.dashCoolDownTimeStamp = 0
 player.isDashing = false
 
 --jump variables
@@ -43,6 +45,7 @@ function player.update(dt)
 	if (love.keyboard.isDown ("lshift") and player.canDash) then
 		player.isDashing = true
 		player.dashInitialPosition = player.positionX
+		player.dashCoolDownTimeStamp = player.dashCoolDownTimeStamp + player.dashCoolDown
 	end
 
 	if (love.keyboard.isDown ("space") and player.canJump) then
@@ -101,6 +104,12 @@ function player.checkJumpCoolDown()
 		player.canJump = true
 	else
 		player.canJump = false
+	end
+
+	if (player.dashCoolDownTimeStamp <= player.dashCoolDown + timeSinceLoad) then
+		player.canDash = true
+	else
+		player.canDash = false
 	end
 end
 
