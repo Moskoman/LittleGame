@@ -14,6 +14,7 @@ player.walkSpeed = 200
 --dash variables
 player.dashSpeed = 200
 player.dashDistance = 40
+player.isDashing = false
 
 --jump variables
 player.canJump = true
@@ -28,9 +29,10 @@ player.jumpSpeed = 40
 
 function player.update(dt)
 
+	print (player.isDashing)
+
 	player.CheckColisions()
 	player.checkJumpCoolDown ()
-	player.Dash(100, dt)
 
 	if (not player.isGrounded) then
 		player.ApplyGravity(dt)
@@ -70,6 +72,7 @@ function player.Dash (finalX, dt)
 
 	if player.positionX < finalX then
 		player.positionX = player.positionX + (player.dashSpeed * dt)
+		player.isDashing = true
 	end
 end
 
@@ -92,7 +95,7 @@ end
 
 function player.CheckColisions()
 	for i, v in ipairs (wallGenerator.walls) do
-		player.CheckWallColision (v)
+		player.CheckWallColision (i,v)
 	end
 
 	local breakCondition = false
@@ -124,9 +127,13 @@ function player.CheckFloorColision (platform)
 
 end
 
-function player.CheckWallColision (wall)
-	if ((player.positionX + player.sizeX >= wall.positionX) and (player.positionX < wall.positionX + wall.sizeX)) then
-		player.walkSpeed = 0
+function player.CheckWallColision (i,wall)
+	if (((player.positionX + player.sizeX >= wall.positionX) and (player.positionX < wall.positionX + wall.sizeX)) and ((player.positionY >= wall.positionY) and (player.positionY < wall.positionY + wall.sizeY))) then
+		if (player.isDashing) then 
+			table.remove(wallGenerator.walls, i)
+		else
+			player.walkSpeed = 0
+		end
 	end
 end
 
