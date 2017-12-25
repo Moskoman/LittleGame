@@ -1,5 +1,6 @@
 platformGenerator = require ('src.platformGenerator')
 wallGenerator = require ("src.wallGenerator")
+camera = require ("src.camera")
 local player = {}
 
 --general variables
@@ -33,6 +34,7 @@ player.jumpSpeed = 40
 
 function player.update(dt)
 
+	player.CheckDeath()
 	player.CheckColisions()
 	player.checkJumpCoolDown ()
 
@@ -153,6 +155,13 @@ function player.CheckWallColision (i,wall)
 		else
 			player.walkSpeed = 0
 		end
+	end
+end
+
+function player.CheckDeath ()
+	if (player.positionX < camera.positionX - player.sizeX - 200) then
+		print "morreu"
+		--print (timeSinceLoad)
 	end
 end
 
