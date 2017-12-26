@@ -22,12 +22,13 @@ function love.update(dt)
 	timeSinceLoad = timeSinceLoad + dt
 	player.update(dt)
 	
+	--camera follows player
 	if (player.isAlive) then	
 		camera.positionX = camera.positionX + (200 * dt)
-		if (player.positionY - 200 < camera.positionY) then 
+		if (player.positionY - 150 < camera.positionY) then 
 			camera.positionY = camera.positionY - (200 * dt)
-		else
-			camera.positionY = player.positionY - (200)
+		elseif (player.positionY - 200 > camera.positionY) then
+			camera.positionY = camera.positionY + (200 * dt)
 		end
 
 		if (player.positionX > camera.positionX - 70) then
