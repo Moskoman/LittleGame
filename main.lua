@@ -9,10 +9,11 @@ camera = require ("src.camera")
 function love.load()
 	timeSinceLoad = 0
 	camera.positionX = 80
+	camera.positionY = player.positionY - 200
 	platform = platformGenerator:makeNewPlatform (0, 250)
-	p2 = platformGenerator:makeNewPlatform (700, 200)
-	p3 = platformGenerator:makeNewPlatform (700, -100)
-	wall1 = wallGenerator:makeNewWall (400, 180, 50, 500)
+	p2 = platformGenerator:makeNewPlatform (700, -300)
+	p3 = platformGenerator:makeNewPlatform (700, -300)
+	wall1 = wallGenerator:makeNewWall (400, 0, 50, 500)
 	wall2 = wallGenerator:makeNewWall (900, 100, 50, 500)
 	player.Dash (100, 0.1)
 end
@@ -21,7 +22,11 @@ function love.update(dt)
 	timeSinceLoad = timeSinceLoad + dt
 	player.update(dt)
 	camera.positionX = camera.positionX + (200 * dt)
-	camera.positionY = player.positionY - (200)
+	if (player.positionY - 200 < camera.positionY) then 
+		camera.positionY = camera.positionY - (200 * dt)
+	else
+		camera.positionY = player.positionY - (200)
+	end
 end
 
 
@@ -31,7 +36,6 @@ function love.draw()
 
 	love.graphics.setColor (255, 255, 255)
 	love.graphics.rectangle ("fill", 0, 0, 4800, 270)
-
 
 	love.graphics.setColor(0, 255, 0)
 
