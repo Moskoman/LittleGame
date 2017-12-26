@@ -21,17 +21,18 @@ end
 function love.update(dt)
 	timeSinceLoad = timeSinceLoad + dt
 	player.update(dt)
-	camera.positionX = camera.positionX + (200 * dt)
-	if (player.positionY - 200 < camera.positionY) then 
-		camera.positionY = camera.positionY - (200 * dt)
-	else
-		camera.positionY = player.positionY - (200)
-	end
+	
+	if (player.isAlive) then	
+		camera.positionX = camera.positionX + (200 * dt)
+		if (player.positionY - 200 < camera.positionY) then 
+			camera.positionY = camera.positionY - (200 * dt)
+		else
+			camera.positionY = player.positionY - (200)
+		end
 
-	if (player.positionX > camera.positionX - 70) then
-		print "foi"
-		print (timeSinceLoad)
-		camera.positionX = camera.positionX + (100 * dt)
+		if (player.positionX > camera.positionX - 70) then
+			camera.positionX = camera.positionX + (100 * dt)
+		end
 	end
 end
 
