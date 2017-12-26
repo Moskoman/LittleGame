@@ -11,8 +11,8 @@ function love.load()
 	camera.positionX = 80
 	camera.positionY = player.positionY - 200
 	platform = platformGenerator:makeNewPlatform (0, 250)
-	p2 = platformGenerator:makeNewPlatform (700, -300)
-	p3 = platformGenerator:makeNewPlatform (700, -300)
+	p2 = platformGenerator:makeNewPlatform (600, 200)
+	p3 = platformGenerator:makeNewPlatform (700, -100)
 	wall1 = wallGenerator:makeNewWall (400, 0, 50, 500)
 	wall2 = wallGenerator:makeNewWall (900, 100, 50, 500)
 	player.Dash (100, 0.1)
@@ -26,6 +26,12 @@ function love.update(dt)
 		camera.positionY = camera.positionY - (200 * dt)
 	else
 		camera.positionY = player.positionY - (200)
+	end
+
+	if (player.positionX > camera.positionX - 70) then
+		print "foi"
+		print (timeSinceLoad)
+		camera.positionX = camera.positionX + (100 * dt)
 	end
 end
 
