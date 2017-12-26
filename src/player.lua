@@ -35,11 +35,10 @@ player.jumpSpeed = 40
 
 function player.update(dt)
 
-	print (player.isGrounded)
 
 	player.CheckDeath()
 	player.CheckColisions()
-	player.checkJumpCoolDown ()
+	player.checkCoolDowns ()
 
 	if (not player.isGrounded) then
 		player.ApplyGravity(dt)
@@ -97,7 +96,7 @@ function player.Dash (finalX, dt)
 end
 
 function player.Jump(jumpInitialPosition, dt) -- NO FUTURO CALCULAR SPEEDY EM FUNÇÃO DO JUMPHEIGHT
-	if ((player.positionY >= jumpInitialPosition - player.jumpHeight) and player.speedY > 0) then
+	if (player.speedY > 0) then
 		player.positionY = player.positionY - (player.speedY * dt)
 		player.speedY = player.speedY - (gravity * dt)
 	else 
@@ -105,18 +104,30 @@ function player.Jump(jumpInitialPosition, dt) -- NO FUTURO CALCULAR SPEEDY EM FU
 	end                                                                                                                                                                                                                                                                                                                                                                                                                                                 
 end
 
-function player.checkJumpCoolDown()
-	if ((player.jumpCoolDownTimeStamp <= player.jumpCoolDown + timeSinceLoad) and (player.isGrounded)) then
-		player.canJump = true
-	else
-		player.canJump = false
-	end
+function player.checkCoolDowns()
+
+	player.canDash = player.CheckDashCoolDown ()
+	player.canJump = player.CheckJumpCoolDown ()
+
+end
+
+function player.CheckDashCoolDown ()
 
 	if (player.dashCoolDownTimeStamp <= player.dashCoolDown + timeSinceLoad) then
-		player.canDash = true
+		return true
 	else
-		player.canDash = false
+		return false
 	end
+end
+
+function player.CheckJumpCoolDown ()
+
+	if ((player.jumpCoolDownTimeStamp <= player.jumpCoolDown + timeSinceLoad) and (player.isGrounded)) then
+		return true
+	else
+		return false
+	end
+
 end
 
 function player.CheckColisions()
@@ -164,7 +175,6 @@ function player.CheckWallColision (i,wall)
 			end
 		elseif (player.positionY < wall.positionY and player.positionY > wall.positionY - player.sizeY - 1) then
 			player.positionY = wall.positionY - player.sizeY
-			print "foi"
 			player.isGrounded = true
 			player.speedY = 0
 		end
