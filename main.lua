@@ -1,4 +1,5 @@
 player = require ("src.player")
+levelManager = require ("src.levelManager")
 platformGenerator = require ("src.platformGenerator")
 wallGenerator = require ("src.wallGenerator")
 platform = require ("src.platform")
@@ -7,6 +8,8 @@ camera = require ("src.camera")
 
 
 function love.load()
+
+	levelManager:load ()
 	timeSinceLoad = 0
 	camera.positionX = 80
 	camera.positionY = player.positionY - 200
@@ -19,6 +22,8 @@ function love.load()
 end
 
 function love.update(dt)
+
+	levelManager:update ()
 	timeSinceLoad = timeSinceLoad + dt
 	player.update(dt)
 	
@@ -43,7 +48,7 @@ function love.draw()
 	camera:set (camera.positionX, camera.positionY)
 
 	love.graphics.setColor (255, 255, 255)
-	love.graphics.rectangle ("fill", 0, 0, 4800, 270)
+	love.graphics.rectangle ("fill", -300, -300, 8800, 2700)
 
 	love.graphics.setColor(0, 255, 0)
 

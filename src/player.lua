@@ -153,7 +153,7 @@ function player.CheckFloorColision (platform)
 		end
 
 		if (player.positionX <= platform.positionX - player.sizeX + 4) then
-			print "colidiu lateral"
+			--print "colidiu lateral"
 		end
 
 		return true
@@ -184,6 +184,7 @@ end
 function player.CheckDeath ()
 	if (player.positionX < camera.positionX - player.sizeX - 200) then
 		player.isAlive = false
+		--print "morreu"
 	end
 end
 
