@@ -12,8 +12,13 @@ function levelManager:load ()
 end
 
 function levelManager:update ()
-	print (#self.levels)
-	print (self.levels[currentLevel])
+
+	for xi, xv in ipairs(self.levels[currentLevel].platformList) do
+		for i, v in ipairs(self.levels[currentLevel].platformList[xi]) do
+			print (v)
+			print "loko"
+		end
+	end
 
 end
 return levelManager
