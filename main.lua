@@ -13,8 +13,6 @@ function love.load()
 	timeSinceLoad = 0
 	camera.positionX = 80
 	camera.positionY = player.positionY - 200
-	wall1 = wallGenerator:makeNewWall (400, 0, 50, 500)
-	wall2 = wallGenerator:makeNewWall (900, 100, 50, 500)
 	player.Dash (100, 0.1)
 end
 

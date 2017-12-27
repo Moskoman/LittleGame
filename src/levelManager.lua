@@ -1,5 +1,6 @@
 level = require ("src.level")
 platformGenerator = require("src.platformGenerator")
+wallGenerator = require ("src.wallGenerator")
 levelManager = {}
 levelManager.levels = {}
 
@@ -26,5 +27,13 @@ function levelManager:PopulateLevel ()
 		platformGenerator:makeNewPlatform (posX, posY)
 	end
 
+	for i, v in ipairs(self.levels[currentLevel].wallCoordList) do
+		posX = v[1]
+		posY = v[2]
+		sizeX = v[3]
+		sizeY = v[4]
+		wallGenerator:makeNewWall (posX, posY, sizeX, sizeY)
+	end
 end
+
 return levelManager
