@@ -9,7 +9,9 @@ levelManager.currentLevel = nil
 
 function levelManager:load ()
 	level1 = require ("src.Levels.level01")
+	level2 = require ("src.Levels.level02")
 	table.insert (self.levels, level1)
+	table.insert (self.levels, level2)
 	currentLevel = 1
 
 	levelManager:PopulateLevel ()
