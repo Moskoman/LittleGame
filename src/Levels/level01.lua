@@ -4,7 +4,7 @@ wall = require ("src.wall")
 
 level01 = {}
 
-level01.platformCoordList = {{0, 250}, {600, 200}, {700, -100}}
-level01.wallCoordList = {{400, 0, 50, 500}, {900, 100, 50, 500}}
+level01.platformCoordList = {{0, 250}, {300, 250}, {800, 350}, {1200, 350}, {1500, 300}, {2100, 300, 200}}
+level01.wallCoordList = {} 
 
 return level01

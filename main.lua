@@ -1,8 +1,5 @@
 player = require ("src.player")
 levelManager = require ("src.levelManager")
-platformGenerator = require ("src.platformGenerator")
-wallGenerator = require ("src.wallGenerator")
-platform = require ("src.platform")
 camera = require ("src.camera")
 
 
@@ -25,9 +22,9 @@ function love.update(dt)
 	--camera follows player
 	if (player.isAlive) then	
 		camera.positionX = camera.positionX + (200 * dt)
-		if (player.positionY - 150 < camera.positionY) then 
+		if (player.positionY - 100 < camera.positionY) then 
 			camera.positionY = camera.positionY - (200 * dt)
-		elseif (player.positionY - 200 > camera.positionY) then
+		elseif (player.positionY - 160 > camera.positionY) then
 			camera.positionY = camera.positionY + (200 * dt)
 		end
 
@@ -54,8 +51,10 @@ function love.draw()
 	love.graphics.setColor (255, 0, 0)
 	love.graphics.rectangle ("fill", player.positionX, player.positionY, player.sizeX, player.sizeY)
 
+	love.graphics.setColor (0, 0, 255)
+
 	for i, v in ipairs (platformGenerator.platforms) do
-		love.graphics.draw (v.image, v.positionX, v.positionY)
+		love.graphics.rectangle("fill", v.positionX, v.positionY, v.sizeX, v.sizeY)
 	end
 
 	camera:unset ()
