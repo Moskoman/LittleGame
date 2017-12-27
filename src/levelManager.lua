@@ -1,4 +1,5 @@
 level = require ("src.level")
+platformGenerator = require("src.platformGenerator")
 levelManager = {}
 levelManager.levels = {}
 
@@ -9,15 +10,20 @@ function levelManager:load ()
 	table.insert (self.levels, level1)
 	currentLevel = 1
 
+	levelManager:PopulateLevel ()
+
 end
 
 function levelManager:update ()
+end
 
-	for xi, xv in ipairs(self.levels[currentLevel].platformList) do
-		for i, v in ipairs(self.levels[currentLevel].platformList[xi]) do
-			print (v)
-			print "loko"
-		end
+
+function levelManager:PopulateLevel ()
+
+	for i, v in ipairs(self.levels[currentLevel].platformCoordList) do
+		posX = v[1]
+		posY = v[2]
+		platformGenerator:makeNewPlatform (posX, posY)
 	end
 
 end
