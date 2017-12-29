@@ -1,7 +1,6 @@
 level = require ("src.level")
 platform = require("src.platform")
 prefabFactory = require("src.prefabFactory")
-wallGenerator = require ("src.wallGenerator")
 powerStar = require ("src.powerStar")
 levelManager = {}
 levelManager.levels = {}
@@ -39,14 +38,14 @@ function levelManager:PopulateLevel ()
 		posY = v[2]
 		sizeX = v[3]
 		sizeY = v[4]
-		wallGenerator:makeNewWall (posX, posY, sizeX, sizeY)
+		prefabFactory:makeNewWall (posX, posY, sizeX, sizeY)
 	end
 
 	for i, v in ipairs (self.levels[currentLevel].powerStarList) do
 		posX = v[1]
 		posY = v[2]
-		powerStar:new (posX, posY)
-		print (posY)
+		prefabFactory:makeNewPowerStar (posX, posY)
+
 	end
 end
 

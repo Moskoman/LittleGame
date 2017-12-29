@@ -59,9 +59,8 @@ function love.draw()
 		love.graphics.rectangle("fill", v.positionX, v.positionY, v.sizeX, v.sizeY)
 	end
 
-	for i, v in ipairs (levelManager.levels[currentLevel].powerStarList) do
-		--love.graphics.rectangle ("fill", 150, 200, 22, v.positionX)
-		print (powerStar.image)
+	for i, v in ipairs (prefabFactory.powerStars) do
+		love.graphics.draw (v.image, v.positionX, v.positionY, v.sizeX, v.sizeY)
 	end
 
 	camera:unset ()
