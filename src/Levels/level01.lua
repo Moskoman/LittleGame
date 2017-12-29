@@ -6,6 +6,6 @@ level01 = {}
 
 level01.platformCoordList = {{0, 250}, {300, 250}, {800, 350}, {1200, 350}, {1500, 300}, {2100, 300, 200}, {2500, 300, 100}, {2850, 300, 1000}}
 level01.wallCoordList = {} 
-level01.powerStarList = {{300, 230}}
+level01.powerStarList = {{850, 190}}
 
 return level01

@@ -11,6 +11,7 @@ player.sizeY = 30
 player.isGrounded = false
 player.walkSpeed = 200
 player.isAlive = true
+player.powerStarCounter = 0
 
 --dash variables
 player.canDash = true
@@ -138,7 +139,11 @@ function player.CheckColisions()
 	end
 	
 	for i, v in ipairs (prefabFactory.walls) do
-		player.CheckWallColision (i,v)
+		player.CheckWallColision (i, v)
+	end
+
+	for i, v in ipairs(prefabFactory.powerStars) do
+		player.CheckPowerStarCollision(i, v)
 	end
 
 end
@@ -177,6 +182,12 @@ function player.CheckWallColision (i,wall)
 			player.isGrounded = true
 			player.speedY = 0
 		end
+	end
+end
+
+function player.CheckPowerStarCollision (i, powerStar)
+	if ((player.positionX + player.sizeX >= powerStar.positionX) and (player.positionX <= powerStar.positionX) and (player.positionY >= powerStar.positionY - 30) and (player.positionY <= powerStar.positionY + powerStar.sizeY + 30)) then
+		print "colidiu powerstar"
 	end
 end
 
