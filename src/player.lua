@@ -1,5 +1,4 @@
-platformGenerator = require ('src.platformGenerator')
-wallGenerator = require ("src.wallGenerator")
+prefabFactory = require ('src.prefabFactory')
 camera = require ("src.camera")
 local player = {}
 
@@ -132,13 +131,13 @@ end
 
 function player.CheckColisions()
 	local breakCondition = false
-	for i, v in ipairs(platformGenerator.platforms) do
+	for i, v in ipairs(prefabFactory.platforms) do
 		if (breakCondition == false) then
 			breakCondition = player.CheckFloorColision(v)
 		end
 	end
 	
-	for i, v in ipairs (wallGenerator.walls) do
+	for i, v in ipairs (prefabFactory.walls) do
 		player.CheckWallColision (i,v)
 	end
 
@@ -168,7 +167,7 @@ function player.CheckWallColision (i,wall)
 	if ((player.positionX + player.sizeX >= wall.positionX) and (player.positionX < wall.positionX + wall.sizeX)) then
 		if ((player.positionY >= wall.positionY) and (player.positionY < wall.positionY + wall.sizeY)) then
 			if (player.isDashing) then 
-				table.remove(wallGenerator.walls, i)
+				table.remove(prefabFactory.walls, i)
 				player.walkSpeed = 200
 			else
 				player.walkSpeed = 0

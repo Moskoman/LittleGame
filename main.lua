@@ -1,5 +1,6 @@
 player = require ("src.player")
 levelManager = require ("src.levelManager")
+powerStar = require ("src.powerStar")
 camera = require ("src.camera")
 
 
@@ -35,6 +36,7 @@ function love.update(dt)
 end
 
 
+
 function love.draw()
 
 	camera:set (camera.positionX, camera.positionY)
@@ -44,7 +46,7 @@ function love.draw()
 
 	love.graphics.setColor(0, 255, 0)
 
-	for i, v in ipairs (wallGenerator.walls) do
+	for i, v in ipairs (prefabFactory.walls) do
 		love.graphics.rectangle("fill", v.positionX, v.positionY, v.sizeX, v.sizeY)
 	end
 
@@ -53,8 +55,13 @@ function love.draw()
 
 	love.graphics.setColor (0, 0, 255)
 
-	for i, v in ipairs (platformGenerator.platforms) do
+	for i, v in ipairs (prefabFactory.platforms) do
 		love.graphics.rectangle("fill", v.positionX, v.positionY, v.sizeX, v.sizeY)
+	end
+
+	for i, v in ipairs (levelManager.levels[currentLevel].powerStarList) do
+		--love.graphics.rectangle ("fill", 150, 200, 22, v.positionX)
+		print (powerStar.image)
 	end
 
 	camera:unset ()

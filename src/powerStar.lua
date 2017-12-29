@@ -12,7 +12,7 @@ function powerStar:new (posX, posY)
 	self.__index = self
 	newStar.positionX = posX
 	newStar.positionY = posY
-
+	return newStar
 end
 
 
