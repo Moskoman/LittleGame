@@ -187,7 +187,8 @@ end
 
 function player.CheckPowerStarCollision (i, powerStar)
 	if ((player.positionX + player.sizeX >= powerStar.positionX) and (player.positionX <= powerStar.positionX) and (player.positionY >= powerStar.positionY - 60) and (player.positionY < powerStar.positionY + powerStar.sizeY + 30)) then
-		print "colidiu powerstar"
+		player.powerStarCounter = player.powerStarCounter + 1
+		table.remove (prefabFactory.powerStars, i)
 	end
 end
 
