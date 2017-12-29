@@ -186,7 +186,7 @@ function player.CheckWallColision (i,wall)
 end
 
 function player.CheckPowerStarCollision (i, powerStar)
-	if ((player.positionX + player.sizeX >= powerStar.positionX) and (player.positionX <= powerStar.positionX) and (player.positionY >= powerStar.positionY - 30) and (player.positionY <= powerStar.positionY + powerStar.sizeY + 30)) then
+	if ((player.positionX + player.sizeX >= powerStar.positionX) and (player.positionX <= powerStar.positionX) and (player.positionY >= powerStar.positionY - 60) and (player.positionY < powerStar.positionY + powerStar.sizeY + 30)) then
 		print "colidiu powerstar"
 	end
 end
