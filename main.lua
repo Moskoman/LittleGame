@@ -64,7 +64,9 @@ function love.draw()
 	end
 
 	for i, v in ipairs (prefabFactory.checkPointFlags) do
-		love.graphics.draw (v.image, v.positionX, v.positionY, 2, 2)
+		love.graphics.setColor (0, 255, 255)
+		love.graphics.rectangle ("fill", v.positionX, v.positionY, 3, 32)
+		love.graphics.rectangle ("fill", v.positionX, v.positionY, 30, 20)
 	end
 
 	camera:unset ()
