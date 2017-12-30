@@ -1,9 +1,11 @@
 prefabFactory = {}
 newPlatform = require ("src.platform")
 wall = require ("src.wall")
+checkPoint = require ("src.checkPointFlag")
 prefabFactory.platforms = {}
 prefabFactory.walls = {}
 prefabFactory.powerStars = {}
+prefabFactory.checkPointFlags = {}
 
 
 function prefabFactory:makeNewPlatform (platformX, platformY, platformSizeX, platformSizeY)
@@ -26,6 +28,13 @@ function prefabFactory:makeNewPowerStar (positionX, positionY)
 	newPowerStar = powerStar:new (positionX, positionY)
 	table.insert (prefabFactory.powerStars, newPowerStar)
 	return newPowerStar
+end
+
+function prefabFactory:makeNewCheckPointFlag (positionX, positionY)
+	newCheckPoint = {}
+	newCheckPoint = checkPoint:new (positionX, positionY)
+	table.insert (prefabFactory.checkPointFlags, newCheckPoint)
+	return newCheckPoint
 end
 
 return prefabFactory

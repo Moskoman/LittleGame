@@ -47,6 +47,12 @@ function levelManager:PopulateLevel ()
 		prefabFactory:makeNewPowerStar (posX, posY)
 
 	end
+
+	for i, v in ipairs (self.levels[currentLevel].checkPointFlags) do
+		posX = v[1]
+		posY = v[2]
+		prefabFactory:makeNewCheckPointFlag (posX, posY)
+	end
 end
 
 return levelManager

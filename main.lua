@@ -63,6 +63,10 @@ function love.draw()
 		love.graphics.draw (v.image, v.positionX, v.positionY, v.sizeX, v.sizeY)
 	end
 
+	for i, v in ipairs (prefabFactory.checkPointFlags) do
+		love.graphics.draw (v.image, v.positionX, v.positionY, 2, 2)
+	end
+
 	camera:unset ()
 	
 end 
