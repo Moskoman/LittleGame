@@ -1,7 +1,5 @@
 level = require ("src.level")
-platform = require("src.platform")
 prefabFactory = require("src.prefabFactory")
-powerStar = require ("src.powerStar")
 levelManager = {}
 levelManager.levels = {}
 
@@ -12,7 +10,7 @@ function levelManager:load ()
 	level2 = require ("src.Levels.level02")
 	table.insert (self.levels, level1)
 	table.insert (self.levels, level2)
-	currentLevel = 1
+	levelManager.currentLevel = 1
 
 	levelManager:PopulateLevel ()
 
@@ -24,7 +22,7 @@ end
 
 function levelManager:PopulateLevel ()
 
-	for i, v in ipairs(self.levels[currentLevel].platformCoordList) do
+	for i, v in ipairs(self.levels[levelManager.currentLevel].platformCoordList) do
 		posX = v[1]
 		posY = v[2]
 		sizeX = v[3] or platform.sizeX
@@ -33,7 +31,7 @@ function levelManager:PopulateLevel ()
 		prefabFactory:makeNewPlatform (posX, posY, sizeX, sizeY)
 	end
 
-	for i, v in ipairs(self.levels[currentLevel].wallCoordList) do
+	for i, v in ipairs(self.levels[levelManager.currentLevel].wallCoordList) do
 		posX = v[1]
 		posY = v[2]
 		sizeX = v[3]
@@ -41,14 +39,14 @@ function levelManager:PopulateLevel ()
 		prefabFactory:makeNewWall (posX, posY, sizeX, sizeY)
 	end
 
-	for i, v in ipairs (self.levels[currentLevel].powerStarList) do
+	for i, v in ipairs (self.levels[levelManager.currentLevel].powerStarList) do
 		posX = v[1]
 		posY = v[2]
 		prefabFactory:makeNewPowerStar (posX, posY)
 
 	end
 
-	for i, v in ipairs (self.levels[currentLevel].checkPointFlags) do
+	for i, v in ipairs (self.levels[levelManager.currentLevel].checkPointFlags) do
 		posX = v[1]
 		posY = v[2]
 		prefabFactory:makeNewCheckPointFlag (posX, posY)
@@ -62,12 +60,25 @@ function levelManager:ClearLevel ()
 	print "current"
 	print (levelManager.currentLevel)
 
-		for i, v in ipairs (self.levels[currentLevel].platformCoordList) do
-			table.remove (self.levels[currentLevel].platformCoordList, i)
+		for i, v in ipairs (self.levels[levelManager.currentLevel].platformCoordList) do
 			table.remove (prefabFactory.platforms, i)
 		end
 
-	
+		for i, v in ipairs (self.levels[levelManager.currentLevel].wallCoordList) do
+			table.remove (prefabFactory.walls, i)
+		end
+
+		for i, v in ipairs (self.levels[levelManager.currentLevel].powerStarList) do
+			table.remove (prefabFactory.powerStars, i)
+		end
+
+		for i, v in ipairs (self.levels[levelManager.currentLevel].checkPointFlags) do
+			table.remove (prefabFactory.checkPointFlags, i)
+		end
+
+		levelManager.currentLevel = 2
+		levelManager:PopulateLevel ()
+		
 end
 
 return levelManager

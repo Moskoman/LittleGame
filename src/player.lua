@@ -200,6 +200,10 @@ end
 function player.checkCheckPointFlagCollision (i, checkPointFlag)
 	if ((player.positionX + player.sizeX >= checkPointFlag.positionX) and (player.positionX <= checkPointFlag.positionX)) then
 		print "colided flag"
+		player.positionX = -40
+		player.positionY = 200
+		camera.positionX = 80
+		camera.positionY = player.positionY - 200
 		levelManager:ClearLevel()
 	end
 end

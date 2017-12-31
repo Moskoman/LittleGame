@@ -9,4 +9,5 @@ level01.wallCoordList = {}
 level01.powerStarList = {{850, 190}, {1400, 250}}
 level01.checkPointFlags = {{3000, 300}}
 
+
 return level01

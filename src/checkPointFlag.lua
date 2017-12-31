@@ -6,6 +6,7 @@ checkPointFlag.image = love.graphics.newImage ("assets/world/checkPointFlag.png"
 
 
 function checkPointFlag:new(positionX, positionY)
+
 	newCheckPointFlag = {}
 	setmetatable(newCheckPointFlag, self)
 	self.__index = self
