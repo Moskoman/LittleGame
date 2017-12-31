@@ -146,6 +146,10 @@ function player.CheckColisions()
 		player.CheckPowerStarCollision(i, v)
 	end
 
+	for i, v in ipairs (prefabFactory.checkPointFlags) do 
+		player.checkCheckPointFlagCollision (i, v)
+	end
+
 end
 
 function player.CheckFloorColision (platform)
@@ -191,6 +195,13 @@ function player.CheckPowerStarCollision (i, powerStar)
 		table.remove (prefabFactory.powerStars, i)
 	end
 end
+
+function player.checkCheckPointFlagCollision (i, checkPointFlag)
+	if ((player.positionX + player.sizeX >= checkPointFlag.positionX) and (player.positionX <= checkPointFlag.positionX)) then
+		print "colided flag"
+	end
+end
+ 
 
 function player.CheckDeath ()
 	if (player.positionX < camera.positionX - player.sizeX - 200) then
