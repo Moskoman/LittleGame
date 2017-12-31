@@ -1,6 +1,7 @@
 checkPointFlag = {}
 checkPointFlag.positionX = 0
 checkPointFlag.positionY = 0
+love.graphics.setDefaultFilter ("nearest", "nearest", 1)
 checkPointFlag.image = love.graphics.newImage ("assets/world/checkPointFlag.png")
 
 

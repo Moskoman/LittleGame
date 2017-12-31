@@ -1,4 +1,5 @@
 prefabFactory = require ('src.prefabFactory')
+levelManager = require ("src.levelManager")
 camera = require ("src.camera")
 local player = {}
 
@@ -199,6 +200,7 @@ end
 function player.checkCheckPointFlagCollision (i, checkPointFlag)
 	if ((player.positionX + player.sizeX >= checkPointFlag.positionX) and (player.positionX <= checkPointFlag.positionX)) then
 		print "colided flag"
+		levelManager:ClearLevel()
 	end
 end
  

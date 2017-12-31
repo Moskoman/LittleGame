@@ -7,6 +7,7 @@ camera = require ("src.camera")
 
 function love.load()
 
+
 	levelManager:load ()
 	timeSinceLoad = 0
 	camera.positionX = 80
@@ -64,9 +65,7 @@ function love.draw()
 	end
 
 	for i, v in ipairs (prefabFactory.checkPointFlags) do
-		love.graphics.setColor (0, 255, 255)
-		love.graphics.rectangle ("fill", v.positionX, v.positionY, 3, 32)
-		love.graphics.rectangle ("fill", v.positionX, v.positionY, 30, 20)
+		love.graphics.draw (v.image, v.positionX, v.positionY, v.sizeX, v.sizeY)
 	end
 
 	camera:unset ()

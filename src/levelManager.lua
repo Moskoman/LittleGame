@@ -55,4 +55,19 @@ function levelManager:PopulateLevel ()
 	end
 end
 
+function levelManager:ClearLevel ()
+
+	print "levels"
+	print (#self.levels)
+	print "current"
+	print (levelManager.currentLevel)
+
+		for i, v in ipairs (self.levels[currentLevel].platformCoordList) do
+			table.remove (self.levels[currentLevel].platformCoordList, i)
+			table.remove (prefabFactory.platforms, i)
+		end
+
+	
+end
+
 return levelManager
