@@ -55,29 +55,13 @@ end
 
 function levelManager:ClearLevel ()
 
-	print "levels"
-	print (#self.levels)
-	print "current"
-	print (levelManager.currentLevel)
-
-		for i, v in ipairs (self.levels[levelManager.currentLevel].platformCoordList) do
-			table.remove (prefabFactory.platforms, i)
-		end
-
-		for i, v in ipairs (self.levels[levelManager.currentLevel].wallCoordList) do
-			table.remove (prefabFactory.walls, i)
-		end
-
-		for i, v in ipairs (self.levels[levelManager.currentLevel].powerStarList) do
-			table.remove (prefabFactory.powerStars, i)
-		end
-
-		for i, v in ipairs (self.levels[levelManager.currentLevel].checkPointFlags) do
-			table.remove (prefabFactory.checkPointFlags, i)
-		end
-
-		levelManager.currentLevel = 2
-		levelManager:PopulateLevel ()
+	prefabFactory.platforms = {}
+	prefabFactory.walls = {}
+	prefabFactory.powerStars = {}
+	prefabFactory.checkPointFlags = {}
+	
+	levelManager.currentLevel = 2
+	levelManager:PopulateLevel ()
 		
 end
 
