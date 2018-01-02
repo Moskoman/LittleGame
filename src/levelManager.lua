@@ -53,15 +53,18 @@ function levelManager:PopulateLevel ()
 	end
 end
 
+function levelManager:NextLevel ()
+	self.currentLevel = self.currentLevel + 1
+	levelManager:ClearLevel ()
+	levelManager:PopulateLevel ()
+end
+
 function levelManager:ClearLevel ()
 
 	prefabFactory.platforms = {}
 	prefabFactory.walls = {}
 	prefabFactory.powerStars = {}
 	prefabFactory.checkPointFlags = {}
-	
-	--levelManager.currentLevel
-	levelManager:PopulateLevel ()
 		
 end
 
