@@ -204,6 +204,7 @@ function player.checkCheckPointFlagCollision (i, checkPointFlag)
 		player.positionY = levelManager.levels[levelManager.currentLevel].playerInitialPosition[2]
 		camera.positionX = levelManager.levels[levelManager.currentLevel].cameraInitialPosition[1]
 		camera.positionY = levelManager.levels[levelManager.currentLevel].cameraInitialPosition[2]
+		player.Dash (100, 0.1)
 	end
 end
  
