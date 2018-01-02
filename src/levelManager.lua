@@ -60,7 +60,7 @@ function levelManager:ClearLevel ()
 	prefabFactory.powerStars = {}
 	prefabFactory.checkPointFlags = {}
 	
-	levelManager.currentLevel = 2
+	--levelManager.currentLevel
 	levelManager:PopulateLevel ()
 		
 end

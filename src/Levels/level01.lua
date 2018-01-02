@@ -8,6 +8,8 @@ level01.platformCoordList = {{0, 250}, {300, 250}, {800, 350}, {1200, 350}, {150
 level01.wallCoordList = {} 
 level01.powerStarList = {{830, 190}, {1400, 250,}, {2400, 200}, {2620, 250}, {2720, 200}, {2820, 250}}
 level01.checkPointFlags = {{3000, 268}}
+level01.playerInitialPosition = {-40, 200}
+level01.cameraInitialPosition = {80, 0}
 
 
 return level01

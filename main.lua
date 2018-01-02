@@ -10,8 +10,8 @@ function love.load()
 
 	levelManager:load ()
 	timeSinceLoad = 0
-	camera.positionX = 80
-	camera.positionY = player.positionY - 200
+	camera.positionX = levelManager.levels[levelManager.currentLevel].cameraInitialPosition[1]
+	camera.positionY = levelManager.levels[levelManager.currentLevel].cameraInitialPosition[2]
 	player.Dash (100, 0.1)
 end
 
@@ -33,6 +33,15 @@ function love.update(dt)
 		if (player.positionX > camera.positionX - 70) then
 			camera.positionX = camera.positionX + (100 * dt)
 		end
+	end
+
+	if (love.keyboard.isDown ("r")) then
+		levelManager:ClearLevel ()
+		levelManager:PopulateLevel ()
+		player.positionX = levelManager.levels[levelManager.currentLevel].playerInitialPosition[1]
+		player.positionY = levelManager.levels[levelManager.currentLevel].playerInitialPosition[2]
+		camera.positionX = levelManager.levels[levelManager.currentLevel].cameraInitialPosition[1]
+		camera.positionY = levelManager.levels[levelManager.currentLevel].cameraInitialPosition[2]
 	end
 end
 
