@@ -200,6 +200,10 @@ end
 function player.checkCheckPointFlagCollision (i, checkPointFlag)
 	if ((player.positionX + player.sizeX >= checkPointFlag.positionX) and (player.positionX <= checkPointFlag.positionX)) then
 		levelManager:NextLevel ()
+		player.positionX = levelManager.levels[levelManager.currentLevel].playerInitialPosition[1]
+		player.positionY = levelManager.levels[levelManager.currentLevel].playerInitialPosition[2]
+		camera.positionX = levelManager.levels[levelManager.currentLevel].cameraInitialPosition[1]
+		camera.positionY = levelManager.levels[levelManager.currentLevel].cameraInitialPosition[2]
 	end
 end
  
