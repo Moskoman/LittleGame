@@ -10,5 +10,6 @@ level02.powerStarList = {{1870, 330}, {1900, 330}, {1930, 330}}
 level02.checkPointFlags = {}
 level02.playerInitialPosition = {-40, 200}
 level02.cameraInitialPosition = {80, 100}
+level02.maxScore = (#level02.powerStarList)
 
 return level02

@@ -1,5 +1,6 @@
 player = require ("src.player")
 levelManager = require ("src.levelManager")
+levelScore = require ("src.levelScore")
 powerStar = require ("src.powerStar")
 camera = require ("src.camera")
 
@@ -76,6 +77,8 @@ function love.draw()
 	for i, v in ipairs (prefabFactory.checkPointFlags) do
 		love.graphics.draw (v.image, v.positionX, v.positionY, v.sizeX, v.sizeY)
 	end
+	
+	levelScore:ShowScore (camera.positionX, camera.positionY)
 
 	camera:unset ()
 	

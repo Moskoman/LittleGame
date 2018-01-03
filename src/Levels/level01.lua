@@ -10,6 +10,7 @@ level01.powerStarList = {{830, 190}, {1400, 250,}, {2400, 200}, {2620, 250}, {27
 level01.checkPointFlags = {{3000, 268}}
 level01.playerInitialPosition = {-40, 200}
 level01.cameraInitialPosition = {80, 0}
+level01.maxScore = (#level01.powerStarList)
 
 
 return level01
