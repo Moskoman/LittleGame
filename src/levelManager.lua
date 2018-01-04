@@ -16,10 +16,6 @@ function levelManager:load ()
 
 end
 
-function levelManager:update ()
-end
-
-
 function levelManager:PopulateLevel ()
 
 	for i, v in ipairs(self.levels[levelManager.currentLevel].platformCoordList) do

@@ -37,4 +37,10 @@ function prefabFactory:makeNewCheckPointFlag (positionX, positionY)
 	return newCheckPoint
 end
 
+function prefabFactory:makeNewEndLevelMenu ()
+	newEndLevelMenu = {}
+	newEndLevelMenu = endLevelMenu:New ()
+	return newEndLevelMenu
+end
+
 return prefabFactory

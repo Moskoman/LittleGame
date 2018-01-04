@@ -8,7 +8,6 @@ camera = require ("src.camera")
 
 function love.load()
 
-
 	levelManager:load ()
 	timeSinceLoad = 0
 	camera.positionX = levelManager.levels[levelManager.currentLevel].cameraInitialPosition[1]
@@ -18,7 +17,6 @@ end
 
 function love.update(dt)
 
-	levelManager:update ()
 	timeSinceLoad = timeSinceLoad + dt
 	player.update(dt)
 	

@@ -14,9 +14,7 @@ function levelScore:ShowScore (playerPositionX, playerPositionY)
 	self.currentScore = player.powerStarCounter
 	love.graphics.setColor (0, 0, 0)
 	love.graphics.print (self.currentScore .. "/" .. self.maxScore, (self.scorePositionX + playerPositionX), (self.scorePositionY + playerPositionY))
-
-
-		
+	
 end
 
 return levelScore

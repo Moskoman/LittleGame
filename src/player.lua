@@ -36,7 +36,6 @@ player.jumpSpeed = 40
 
 function player.update(dt)
 
-
 	player.CheckDeath()
 	player.CheckColisions()
 	player.checkCoolDowns ()
