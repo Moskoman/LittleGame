@@ -20,6 +20,13 @@ function love.update(dt)
 	timeSinceLoad = timeSinceLoad + dt
 	player.update(dt)
 	
+	if (player.positionY < 130) then
+		print "posx"
+		print (player.positionX)
+		print "posY"
+		print (player.positionY)
+	end
+
 	--camera follows player
 	if (player.isAlive) then	
 		camera.positionX = camera.positionX + (200 * dt)
