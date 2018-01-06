@@ -5,14 +5,13 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 
     public int moveSpeed = 10;
+    public Vector3 jumpForce = new Vector3 (0, 10, 0);
     public Rigidbody playerRigidbody;
-    private bool isGrounded;
 
     // Use this for initialization
     void Start () {
 
         playerRigidbody = GetComponent<Rigidbody>();
-        isGrounded = true;
     }
 	
 	// Update is called once per frame
@@ -33,11 +32,25 @@ public class Player : MonoBehaviour {
     {
         if (Input.GetKeyDown("space"))
         {
-            if (isGrounded)
+            if (IsGrounded())
             {
-                Debug.Log("xubariba");
+                Jump();
             }
         }
+    }
+
+    private void Jump ()
+    {
+
+        playerRigidbody.AddForce(jumpForce, ForceMode.Impulse);
+    }
+
+    public bool IsGrounded ()
+    {
+        if (Mathf.Abs (playerRigidbody.velocity.y) <= 0.1f) {
+            return true;
+        }
+        return false;
     }
 
 }
