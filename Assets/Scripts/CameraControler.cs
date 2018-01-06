@@ -24,7 +24,7 @@ public class CameraControler : MonoBehaviour {
     public void FollowPlayer ()
     {
         Vector3 playerPosition = player.transform.position;
-        camera.transform.position = new Vector3(playerPosition.x + 5, playerPosition.y + 3, -10);
+        camera.transform.position = new Vector3(playerPosition.x + 10, playerPosition.y + 3, -13);
     }
 
 }

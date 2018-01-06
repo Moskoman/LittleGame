@@ -4,14 +4,20 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
-    public int moveSpeed = 10;
-    public Vector3 jumpForce = new Vector3 (0, 10, 0);
+    public int moveSpeed = 30;
+    public float jumpForce = 20;
+    public float dashForce = 20;
+    private Vector3 jumpForceVector;
+    private Vector3 dashForceVector;
+    
     public Rigidbody playerRigidbody;
 
     // Use this for initialization
     void Start () {
 
         playerRigidbody = GetComponent<Rigidbody>();
+        jumpForceVector = new Vector3(0, jumpForce, 0);
+        dashForceVector = new Vector3(dashForce, 0, 0);
     }
 	
 	// Update is called once per frame
@@ -37,12 +43,22 @@ public class Player : MonoBehaviour {
                 Jump();
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            Dash();
+        }
     }
 
     private void Jump ()
     {
 
-        playerRigidbody.AddForce(jumpForce, ForceMode.Impulse);
+        playerRigidbody.AddForce(jumpForceVector, ForceMode.Impulse);
+    }
+
+    private void Dash ()
+    {
+        playerRigidbody.AddForce(dashForceVector, ForceMode.Impulse);
     }
 
     public bool IsGrounded ()
