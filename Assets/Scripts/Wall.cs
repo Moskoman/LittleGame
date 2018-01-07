@@ -5,9 +5,12 @@ using UnityEngine;
 
 public class Wall : MonoBehaviour {
 
+    private bool playerIsDashing;
+
 	// Use this for initialization
 	void Start () {
-		
+
+
 	}
 	
 	// Update is called once per frame
@@ -19,7 +22,11 @@ public class Wall : MonoBehaviour {
     {
          if (collision.gameObject.tag == "Player")
         {
-            Destroy(this.gameObject);
+            playerIsDashing = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().isDashing;
+            if (playerIsDashing == true)
+                {
+                Destroy(this.gameObject);
+            }
         }
     }
 }

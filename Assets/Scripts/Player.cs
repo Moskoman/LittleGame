@@ -7,6 +7,7 @@ public class Player : MonoBehaviour {
     public int moveSpeed = 30;
     public float jumpForce = 20;
     public float dashForce = 20;
+    public bool isDashing = false;
     private Vector3 jumpForceVector;
     private Vector3 dashForceVector;
     
@@ -15,6 +16,7 @@ public class Player : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
+        isDashing = false;
         playerRigidbody = GetComponent<Rigidbody>();
         jumpForceVector = new Vector3(0, jumpForce, 0);
         dashForceVector = new Vector3(dashForce, 0, 0);
@@ -25,7 +27,7 @@ public class Player : MonoBehaviour {
 
         CheckInput();
         Move();
-		
+        Debug.Log(isDashing);
 	}
 
     private void Move () {
@@ -44,7 +46,7 @@ public class Player : MonoBehaviour {
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if ((isDashing == false) && (Input.GetKeyDown(KeyCode.LeftShift)))
         {
             Dash();
         }
@@ -59,6 +61,8 @@ public class Player : MonoBehaviour {
     private void Dash ()
     {
         playerRigidbody.AddForce(dashForceVector, ForceMode.Impulse);
+        isDashing = true;
+
     }
 
     public bool IsGrounded ()
