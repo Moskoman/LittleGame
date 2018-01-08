@@ -8,6 +8,9 @@ public class Player : MonoBehaviour {
     public float jumpForce = 20;
     public float dashForce = 20;
     public bool isDashing = false;
+    private bool canDash = true;
+    private float dashCoolDown = 2f;
+    private float dashCoolDownTimeStamp = 0;
     private Vector3 jumpForceVector;
     private Vector3 dashForceVector;
     
@@ -25,9 +28,9 @@ public class Player : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        CheckCoolDown();
         CheckInput();
         Move();
-        Debug.Log(isDashing);
 	}
 
     private void Move () {
@@ -46,7 +49,7 @@ public class Player : MonoBehaviour {
             }
         }
 
-        if ((isDashing == false) && (Input.GetKeyDown(KeyCode.LeftShift)))
+        if ((canDash == true) && (Input.GetKeyDown(KeyCode.LeftShift)))
         {
             Dash();
         }
@@ -62,6 +65,8 @@ public class Player : MonoBehaviour {
     {
         playerRigidbody.AddForce(dashForceVector, ForceMode.Impulse);
         isDashing = true;
+        dashCoolDownTimeStamp = Time.time;
+        canDash = false;
 
     }
 
@@ -73,4 +78,11 @@ public class Player : MonoBehaviour {
         return false;
     }
 
+    private void CheckCoolDown ()
+    {
+        if (dashCoolDownTimeStamp + dashCoolDown <= Time.time)
+        {
+            canDash = true;
+        }
+    }
 }
