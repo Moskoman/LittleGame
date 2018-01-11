@@ -13,7 +13,7 @@ public class Player : MonoBehaviour {
     private float dashCoolDown = 2f;
     private float dashCoolDownTimeStamp = 0;
     private Vector3 jumpForceVector;
-    private Camera camera;
+    public Camera camera;
     private Vector3 dashForceVector;
     
     public Rigidbody playerRigidbody;
@@ -25,11 +25,12 @@ public class Player : MonoBehaviour {
         playerRigidbody = GetComponent<Rigidbody>();
         jumpForceVector = new Vector3(0, jumpForce, 0);
         dashForceVector = new Vector3(dashForce, 0, 0);
-        camera = GetComponent<Camera>();
     }
 	
 	// Update is called once per frame
 	void Update () {
+
+        //Debug.Log(isAlive);
 
         CheckDeath();
         if (isAlive)
@@ -97,7 +98,7 @@ public class Player : MonoBehaviour {
     {
         if (transform.position.x < camera.transform.position.x)
         {
-            isAlive = false;
+            //isAlive = false;
         }
     }
 }
