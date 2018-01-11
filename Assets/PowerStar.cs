@@ -16,7 +16,7 @@ public class PowerStar : MonoBehaviour {
 
     private void OnTriggerEnter(Collider collider)
     {
-        Debug.Log("Pegou estrela");
+        GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().powerStarCounter++;
         Destroy(this.gameObject);
     }
 }

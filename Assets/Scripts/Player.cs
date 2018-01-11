@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 
     public int moveSpeed = 30;
+    public int powerStarCounter = 0;
     public float jumpForce = 30;
     public float dashForce = 20;
     public bool isDashing = false;
@@ -29,8 +30,6 @@ public class Player : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-        //Debug.Log(isAlive);
 
         CheckDeath();
         if (isAlive)
