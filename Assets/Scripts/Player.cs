@@ -95,9 +95,9 @@ public class Player : MonoBehaviour {
 
     private void CheckDeath ()
     {
-        if (transform.position.x < camera.transform.position.x)
+        if (transform.position.x < camera.transform.position.x - 15)
         {
-            //isAlive = false;
+            isAlive = false;
         }
     }
 }
