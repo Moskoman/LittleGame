@@ -7,17 +7,6 @@ public class Wall : MonoBehaviour {
 
     private bool playerIsDashing;
 
-	// Use this for initialization
-	void Start () {
-
-
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
     private void OnCollisionEnter(Collision collision)
     {
          if (collision.gameObject.tag == "Player")
