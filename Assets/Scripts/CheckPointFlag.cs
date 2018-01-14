@@ -18,7 +18,8 @@ public class CheckPointFlag : MonoBehaviour {
     {
         if (collision.gameObject.tag == "Player")
         {
-            Debug.Log("Acabou a fase"); 
+            Debug.Log("Acabou a fase");
+            GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().DecreaseSpeedFlag();
         }
     }
 }

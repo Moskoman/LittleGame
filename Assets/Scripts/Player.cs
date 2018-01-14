@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
-    public int moveSpeed = 30;
+    public float moveSpeed = 30;
     public int powerStarCounter = 0;
     public float jumpForce = 30;
     public float dashForce = 20;
     public bool isDashing = false;
     public bool isAlive = true;
+    private bool canDecreaseSpeed = false;
     private bool canDash = true;
     private float dashCoolDown = 2f;
     private float dashCoolDownTimeStamp = 0;
@@ -34,6 +35,10 @@ public class Player : MonoBehaviour {
         CheckDeath();
         if (isAlive)
         {
+            if (canDecreaseSpeed == true)
+            {
+                DecreaseSpeed();
+            }
             CheckCoolDown();
             CheckInput();
             Move();
@@ -100,4 +105,17 @@ public class Player : MonoBehaviour {
             isAlive = false;
         }
     }
+
+    public void DecreaseSpeed()
+    {
+        if (moveSpeed > 0)
+        {
+            moveSpeed -= 0.3f;
+        }
+    }
+
+    public void DecreaseSpeedFlag ()
+        {
+            canDecreaseSpeed = true;
+        }
 }
