@@ -4,27 +4,13 @@ using UnityEngine;
 
 public class CameraControler : MonoBehaviour {
 
-    public Camera camera;
-    public GameObject player;
+    public Transform player;
+    public float smoothStep = 0.125f;
+    public Vector3 offset;
 
-    // Use this for initialization
-	void Start () {
-
-        camera = GetComponent<Camera>();
-        player = GameObject.FindGameObjectWithTag("Player");
-
-	}
-	
-	// Update is called once per frame
-	void Update () {
-
-        FollowPlayer();
-	}
-
-    public void FollowPlayer ()
+    void LateUpdate ()
     {
-        Vector3 playerPosition = player.transform.position;
-        camera.transform.position = new Vector3(playerPosition.x + 10, playerPosition.y + 1, transform.position.z);
-    }
+        transform.position = player.position + offset;
+    } 
 
 }
