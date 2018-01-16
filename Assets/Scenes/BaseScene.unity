@@ -292,7 +292,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 318012669}
   smoothStep: 0.125
-  offset: {x: 0, y: 0, z: -10}
+  offset: {x: 8, y: 2, z: -10}
 --- !u!4 &318012669 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4534211556745104, guid: a03d89eec8f50244fab431800658777a,

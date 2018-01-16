@@ -8,9 +8,17 @@ public class CameraControler : MonoBehaviour {
     public float smoothStep = 0.125f;
     public Vector3 offset;
 
-    void LateUpdate ()
+    void FixedUpdate ()
     {
-        transform.position = player.position + offset;
+        Vector3 desiredPosition = player.position + offset;
+        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothStep);
+        
+        if (player.position.y + 2 > transform.position.y)
+        {
+
+        }
+            transform.position = smoothedPosition;
+
     } 
 
 }
