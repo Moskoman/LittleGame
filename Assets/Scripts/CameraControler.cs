@@ -7,18 +7,33 @@ public class CameraControler : MonoBehaviour {
     public Transform player;
     public float smoothStep = 0.125f;
     public Vector3 offset;
+    private Vector3 desiredPosition;
 
     void FixedUpdate ()
     {
-        Vector3 desiredPosition = player.position + offset;
-        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothStep);
-        
-        if (player.position.y + 2 > transform.position.y)
+        if (CheckFollowPlayerY())
         {
-
+            desiredPosition = player.position + offset;
         }
-            transform.position = smoothedPosition;
 
-    } 
+        else
+        {
+            desiredPosition = player.position + offset;
+            float newCameraY = Mathf.Lerp(transform.position.y, desiredPosition.y, smoothStep);
+            desiredPosition = new Vector3(desiredPosition.x, newCameraY, desiredPosition.z);
+        }
+
+        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothStep);
+        transform.position = smoothedPosition;
+
+    }
+
+    private bool CheckFollowPlayerY() {
+        if (player.position.y > transform.position.y + 1 || player.position.y < transform.position.y - 3)
+        {
+            return true;
+        }
+        return false;
+    }
 
 }
