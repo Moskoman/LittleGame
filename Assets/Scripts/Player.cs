@@ -118,4 +118,9 @@ public class Player : MonoBehaviour {
         {
             canDecreaseSpeed = true;
         }
+
+    public void Die ()
+    {
+        isAlive = false;
+    }
 }

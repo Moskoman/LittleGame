@@ -16,6 +16,11 @@ public class Wall : MonoBehaviour {
                 {
                 Destroy(this.gameObject);
             }
+            else
+            {
+                GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().Die();
+                Destroy(this.gameObject);
+            }
         }
     }
 }
