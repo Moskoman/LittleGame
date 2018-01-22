@@ -24,6 +24,7 @@ public class Player : MonoBehaviour {
     void Start () {
 
         isDashing = false;
+        isAlive = true;
         playerRigidbody = GetComponent<Rigidbody>();
         jumpForceVector = new Vector3(0, jumpForce, 0);
         dashForceVector = new Vector3(dashForce, 0, 0);
@@ -100,10 +101,10 @@ public class Player : MonoBehaviour {
 
     private void CheckDeath ()
     {
-        if (transform.position.x < camera.transform.position.x - 15)
+       /* if (transform.position.x < camera.transform.position.x - 15)
         {
             isAlive = false;
-        }
+        } */
     }
 
     public void DecreaseSpeed()
